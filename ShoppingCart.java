@@ -3,31 +3,31 @@ import java.util.*;
 class Shopping {
      private HashMap<Item ,  Integer> listofitem = new HashMap<>() ; 
 
-     void addtocart(Item it , int q){
-           listofitem.put(it , q); 
+     void addtocart(Item item , int q){
+           listofitem.put(item , q); 
            System.out.println("Item is added successfully") ; 
      }
 
-     int display(Item i){
-        if(listofitem.containsKey(i)){
-         return listofitem.get(i) ; 
+     int display(Item item){
+        if(listofitem.containsKey(item)){
+         return listofitem.get(item) ; 
         }
         return 0 ;
      
      }
-     void update(Item i , int q){ 
-        if(listofitem.containsKey(i)){
-           listofitem.replace(i,q) ;
-           System.out.println(" Upadate Successfully ") ; 
+     void update(Item item , int q){ 
+        if(listofitem.containsKey(item)){
+           listofitem.replace(item,q) ;
+           System.out.println(" Update Successfully ") ; 
         } 
         else{
              System.out.println("Item not found in  cart Firstly add the item into a cart") ; 
         }
      }
 
-     void delete(Item i){
-        if(listofitem.containsKey(i)){
-           listofitem.remove(i) ; 
+     void delete(Item item){
+        if(listofitem.containsKey(item)){
+           listofitem.remove(item) ; 
            System.out.println("Sucessfully delete the item") ; 
         }
         else{
@@ -79,8 +79,8 @@ class Item{
 
 public class ShoppingCart{
 
-   static Item find (List<Item> a , int id){
-    for(Item i:a){
+   static Item find (List<Item> store , int id){
+    for(Item i:store){
          if(i.getitemid()==id){
              return i ; 
          }
@@ -94,12 +94,16 @@ public class ShoppingCart{
      public static void main(String[] args){
         
 
-          ArrayList<Item> a = new ArrayList<>() ; 
+          ArrayList<Item> store = new ArrayList<>() ; 
 
-          a.add(new Item(1,"milk" , "liquid" , 26.0f)) ; 
-          a.add(new Item(2 ,"banana" , "fruit" , 34)) ; 
-          a.add(new Item(3,"Tomato" , "vegetable" ,12)) ; 
-          a.add(new Item(4,"coco-cola" ,"cold-drink", 20)) ; 
+          store.add(new Item(1,"milk" , "liquid" , 26)) ; 
+          store.add(new Item(2 ,"banana" , "fruit" , 34)) ; 
+          store.add(new Item(3,"Tomato" , "vegetable" ,12)) ; 
+          store.add(new Item(4,"coco-cola" ,"cold-drink", 20)) ; 
+
+          for(Item i: store){
+             System.out.println(i.getitemid() + " " + i.getname()+" "+ i.getdes() +" " + i.getprice()) ;
+          }
 
 
           Shopping s = new Shopping() ;
@@ -112,17 +116,19 @@ public class ShoppingCart{
             
         System.out.print("Enter item ID : ") ; 
          int id = sc.nextInt() ;     
-         Item check = find(a,id) ; // find the item present or not 
+         Item check = find(store,id) ; // find the item present or not 
          if(check==null){
              System.out.println("Item is not available"); 
          }else{
-        System.out.println("Enter the number :") ; 
-        System.out.println("1. add to cart") ; 
-        System.out.println("2. Display Quantity") ; 
-        System.out.println("3. Update the Item Quantity") ; 
-        System.out.println("4, delete item from to cart") ; 
-        System.out.println("5. Total bill amount") ;
+               System.out.println("Enter the number :") ; 
+               System.out.println("1. add to cart") ; 
+               System.out.println("2. Display  quantity for added item") ; 
+               System.out.println("3. Update the Item Quantity") ; 
+               System.out.println("4. Delete item from to cart") ; 
+               System.out.println("5. Total Bill Amount") ;
+
          int press = sc.nextInt() ; 
+
          switch(press){
             case 1: //add to cart
             System.out.println("Enter the quantity") ;
@@ -130,29 +136,32 @@ public class ShoppingCart{
              s.addtocart(check , q) ; 
                 break ;
 
-         case 2 : // dispaly  qunantity
-             System.out.println(check.getname() + " " +  s.display(check)) ; 
+            case 2 : // dispaly  qunantity
+               System.out.println(check.getname() + " " +  s.display(check)) ; 
                break ; 
 
-         case 3: // update 
-         System.out.println("Enter the quantity ") ; 
-           int qu  = sc.nextInt() ; 
-             s.update(check , qu) ; 
-                break ; 
+            case 3: // update 
+               System.out.println("Enter the quantity ") ; 
+               int qu  = sc.nextInt() ; 
+               s.update(check , qu) ; 
+               break ; 
 
-         case 4: // delete
-            s.delete(check) ; 
-                break ; 
+            case 4: // delete
+               s.delete(check) ; 
+               break ; 
 
-         case 5: // total bill
-            System.out.println("Total bill:" +s.display_Bill()) ;
-                break ; 
+            case 5: // total bill
+               System.out.println("Total bill:" +s.display_Bill()) ;
+               break ; 
 
-        default : System.out.println("Choose vaild number : ") ; 
+            default : 
+               System.out.println("Choose vaild number : ") ; 
 
          }
          }
-         System.out.println("Press the any number : for exit press -1  ") ; 
+
+         System.out.println("if you continue press any number : ");
+         System.out.println("for exit press -1:") ; 
             
             i = sc.nextInt() ; 
             if(i==-1){
@@ -161,10 +170,7 @@ public class ShoppingCart{
          }
          
          System.out.println("Total bill : " + s.display_Bill()) ; 
-
-        
-        
-         
+    
 
      } 
      
