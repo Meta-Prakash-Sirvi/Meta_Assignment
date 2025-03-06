@@ -14,7 +14,7 @@ class Shopping {
           System.out.println("item - "+i.getname() + " quanity - "+ listofitem.get(i)) ; 
         }
         else{
-             System.out.println("This item is not available in the cart") ; 
+             System.out.println(" This item is not available in the cart") ; 
         }
      
      }
@@ -80,7 +80,7 @@ class Item{
 }
 
 
-public class shoppingCart{
+public class ShoppingCart{
 
    static Item find (List<Item> a , int id){
     for(Item i:a){
