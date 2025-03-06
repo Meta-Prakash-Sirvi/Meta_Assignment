@@ -34,7 +34,7 @@ class Shopping {
            System.out.println("Sucessfully delete the item") ; 
         }
         else{
-             System.out.println("Item is not  preaent in the cart ");
+             System.out.println("Item is not  present in the cart ");
         }
      }
 
@@ -116,47 +116,45 @@ public class ShoppingCart{
         System.out.print("Enter item ID : ") ; 
          int id = sc.nextInt() ;     
          Item check = find(a,id) ; // find the item present or not 
-        
-        System.out.print("Enter the number :") ; 
+         if(check==null){
+             System.out.println("Item is not available"); 
+         }
+         else{
+        System.out.println("Enter the number :") ; 
         System.out.println("1. add to cart") ; 
         System.out.println("2. Display Quantity") ; 
         System.out.println("3. Update the Item Quantity") ; 
-        System.out.println("4. Total bill amount") ;
+        System.out.println("4, delete item from to cart") ; 
+        System.out.println("5. Total bill amount") ;
          int press = sc.nextInt() ; 
          switch(press){
             case 1: //add to cart
-         if(check==null){
-             System.out.println("Item is not available") ; 
-         }
-         else{
-             s.addtocart(check , 23) ; 
-         }
+            System.out.println("Enter the quantity") ;
+              int q = sc.nextInt() ; 
+             s.addtocart(check , q) ; 
          break ;
 
          case 2 : // dispaly  qunantity
-         if(check==null){
-            System.out.println("Item is not available") ; 
-         }
-         else{
              s.display(check) ; 
-         }
          break ; 
 
          case 3: // update 
-         if(check==null){
-             System.out.println("Item is not available") ;  ; 
-         }
-         else{
-             s.update(check , 3) ; 
-         }
+         System.out.println("Enter the quantity ") ; 
+           int qu  = sc.nextInt() ; 
+             s.update(check , qu) ; 
          break ; 
 
-         case 4: // total bill
+         case 4: // delete
+            s.delete(check) ; 
+            break ; 
+
+         case 5: // total bill
             System.out.println("Total bill:" +s.display_Bill()) ;
             break ; 
 
         default : System.out.println("Choose vaild number : ") ; 
 
+         }
          }
          System.out.println("Press the any number : for exit press -1  ") ; 
             
