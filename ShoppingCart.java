@@ -1,5 +1,4 @@
 import java.util.*; 
-import java.util.Scanner ; 
 
 class Shopping {
      private HashMap<Item ,  Integer> listofitem = new HashMap<>() ; 
@@ -9,13 +8,11 @@ class Shopping {
            System.out.println("Item is added successfully") ; 
      }
 
-     void display(Item i){
+     int display(Item i){
         if(listofitem.containsKey(i)){
-          System.out.println("item - "+i.getname() + " quanity - "+ listofitem.get(i)) ; 
+         return listofitem.get(i) ; 
         }
-        else{
-             System.out.println(" This item is not available in the cart") ; 
-        }
+        return 0 ;
      
      }
      void update(Item i , int q){ 
@@ -118,8 +115,7 @@ public class ShoppingCart{
          Item check = find(a,id) ; // find the item present or not 
          if(check==null){
              System.out.println("Item is not available"); 
-         }
-         else{
+         }else{
         System.out.println("Enter the number :") ; 
         System.out.println("1. add to cart") ; 
         System.out.println("2. Display Quantity") ; 
@@ -132,25 +128,25 @@ public class ShoppingCart{
             System.out.println("Enter the quantity") ;
               int q = sc.nextInt() ; 
              s.addtocart(check , q) ; 
-         break ;
+                break ;
 
          case 2 : // dispaly  qunantity
-             s.display(check) ; 
-         break ; 
+             System.out.println(check.getname() + " " +  s.display(check)) ; 
+               break ; 
 
          case 3: // update 
          System.out.println("Enter the quantity ") ; 
            int qu  = sc.nextInt() ; 
              s.update(check , qu) ; 
-         break ; 
+                break ; 
 
          case 4: // delete
             s.delete(check) ; 
-            break ; 
+                break ; 
 
          case 5: // total bill
             System.out.println("Total bill:" +s.display_Bill()) ;
-            break ; 
+                break ; 
 
         default : System.out.println("Choose vaild number : ") ; 
 
