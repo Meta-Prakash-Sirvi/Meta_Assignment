@@ -91,46 +91,21 @@ class HexCalc{
 
             return dectohex(ans) ; 
        }
+       boolean compare(String s1 , String s2){
+             int len1 = s1.length() ; 
+             int len2 = s2.length() ;
 
-       boolean isGreater(String s1 ,String s2) {
-           int len1 = s1.length() ; 
-           int len2 = s2.length() ; 
-           if(len1>len2){
+             if(len1>len2){
                 return true ; 
-           }
-           
-                return false; 
-           
-           
-       }
-
-       boolean isSmaller(String s1 ,String s2) {
-           int len1 = s1.length() ; 
-           int len2 = s2.length() ; 
-           if(len1<len2){
+             }
+             else if(len1<len2){
+                return false ; 
+             }
+             else{
                 return true ; 
-           }
+             }
            
-                return false; 
-           
-       }
-
-       boolean isEqual(String s1 , String s2) {
-          
-           int len1  = s1.length() ; 
-           int len2 = s2.length() ; 
-
-           if(len1!=len2) {
-                return false; 
-           }
-           for(int i=0 ; i<len1 ; i++){    //check each character 
-                if(s1.charAt(i)!=s2.charAt(i)){
-                     return false ; 
-                }
-           }
-           return true ; 
-       }
-
+       }  
 
 }
 
@@ -138,18 +113,15 @@ public class HexaDecimal{
       public static void main(String[] args) {
           HexCalc h = new HexCalc() ; 
           Scanner sc = new Scanner(System.in) ; 
-          System.out.println("Enter the  hexadecimal numbers : ") ; 
-          String s1 = sc.next(); 
-          String s2 = sc.next() ; 
+           String s1 = "A5F" ;
+           String s2 = "A3F" ;
 
           System.out.println("addtion  = " +  h.add(s1 , s2)) ;
           System.out.println("Substraction = " + h.sub(s1 ,s2)) ; 
           System.out.println("Multiplycation = " + h.multi(s1 , s2)) ; 
           System.out.println("Division = "+ h.div(s1 ,s2)) ; 
 
-          System.out.println("first hexadecimal is gerater = " + h.isGreater(s1 ,s2)) ; 
-          System.out.println("first hexadecimal is smaller = " + h.isSmaller(s1 ,s2)) ; 
-          System.out.println("first  , second hexadecimal are equal = " + h.isEqual(s1 ,s2)) ; 
+          System.out.println("first heaxdecimal id greater than Second hexadecimal =" + h.compare(s1 , s2)) ; 
           System.out.println("hexadecimal to decimal  first number = "+h.hexatodec(s1)) ; 
           System.out.println("hexadecimal to decimal second number = " +h.hexatodec(s2)) ; 
            
