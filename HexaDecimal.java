@@ -2,12 +2,12 @@ import java.util.* ;
 
 class HexCalc{
       
-      public int  hexatodec(String hexa){
+      public int  hexatodec(String hexa) {
          int decimal =0 ; 
          int j = 0 ; 
          int len = hexa.length() ; 
 
-         for(int i = len-1; i>=0 ; i--){
+         for(int i = len-1; i>=0 ; i--) {
               char ch = hexa.charAt(i) ; 
                if(ch>='0' && ch<='9'){
                      decimal += (ch-'0')* Math.pow(16 ,j) ; 
@@ -24,7 +24,7 @@ class HexCalc{
          return decimal ; 
       }
 
-       public String dectohex(int  dec){
+       public String dectohex(int  dec) {
             if(dec==0){
                 return "0" ; 
             }
@@ -44,7 +44,7 @@ class HexCalc{
        return s.reverse().toString() ; 
        }
 
-       public String add(String s1 , String s2){    //addintion 
+       public String add(String s1 , String s2) {    //addintion 
               
                int number1 = hexatodec(s1) ; 
                int number2 = hexatodec(s2) ; 
@@ -55,7 +55,7 @@ class HexCalc{
               
        }
 
-       public String sub(String s1 ,String s2){  //substraction
+       public String sub(String s1 ,String s2) {  //substraction
               int number1 = hexatodec(s1) ; 
               int number2 = hexatodec(s2) ; 
 
@@ -67,7 +67,7 @@ class HexCalc{
               return dectohex(ans) ; 
        }
 
-       public String multi(String s1 , String s2){   //multiplication 
+       public String multi(String s1 , String s2) {   //multiplication 
            int number1 = hexatodec(s1) ; 
            int number2 = hexatodec(s2) ; 
 
@@ -80,7 +80,7 @@ class HexCalc{
            return dectohex(ans) ; 
        }
 
-       public String div(String s1 ,String s2){   // division 
+       public String div(String s1 ,String s2) {   // division 
            int number1 = hexatodec(s1) ; 
            int number2 = hexatodec(s2) ; 
             if(number2==0){
@@ -92,7 +92,7 @@ class HexCalc{
             return dectohex(ans) ; 
        }
 
-       boolean isGreater(String s1 ,String s2){
+       boolean isGreater(String s1 ,String s2) {
            int len1 = s1.length() ; 
            int len2 = s2.length() ; 
            if(len1>len2){
@@ -104,7 +104,7 @@ class HexCalc{
            
        }
 
-       boolean isSmaller(String s1 ,String s2){
+       boolean isSmaller(String s1 ,String s2) {
            int len1 = s1.length() ; 
            int len2 = s2.length() ; 
            if(len1<len2){
@@ -115,7 +115,7 @@ class HexCalc{
            
        }
 
-       boolean isEqual(String s1 , String s2){
+       boolean isEqual(String s1 , String s2) {
           
            int len1  = s1.length() ; 
            int len2 = s2.length() ; 
