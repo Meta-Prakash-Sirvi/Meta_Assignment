@@ -121,7 +121,7 @@ public class HexaDecimal{
           System.out.println("Multiplycation = " + h.multi(s1 , s2)) ; 
           System.out.println("Division = "+ h.div(s1 ,s2)) ; 
 
-          System.out.println("first heaxdecimal id greater than Second hexadecimal =" + h.compare(s1 , s2)) ; 
+          System.out.println("first heaxdecimal is greater than Second hexadecimal =" + h.compare(s1 , s2)) ; 
           System.out.println("hexadecimal to decimal  first number = "+h.hexatodec(s1)) ; 
           System.out.println("hexadecimal to decimal second number = " +h.hexatodec(s2)) ; 
            
