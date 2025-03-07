@@ -116,12 +116,19 @@ class HexCalc{
        }
 
        boolean isEqual(String s1 , String s2){
-           int number1 = hexatodec(s1) ;
-           int number2 = hexatodec(s2) ; 
-           if(number1==number2){
-                return true;
+          
+           int len1  = s1.length() ; 
+           int len2 = s2.length() ; 
+
+           if(len1!=len2) {
+                return false; 
            }
-           return false ; 
+           for(int i=0 ; i<len1 ; i++){    //check each character 
+                if(s1.charAt(i)!=s2.charAt(i)){
+                     return false ; 
+                }
+           }
+           return true ; 
        }
 
 
