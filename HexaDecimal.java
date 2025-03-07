@@ -142,7 +142,7 @@ public class HexaDecimal{
 
           System.out.println("first hexadecimal is gerater = " + h.isGreater(s1 ,s2)) ; 
           System.out.println("first hexadecimal is smaller = " + h.isSmaller(s1 ,s2)) ; 
-          System.out.println("first hexadecimal is equal = " + h.isEqual(s1 ,s2)) ; 
+          System.out.println("first  , second hexadecimal are equal = " + h.isEqual(s1 ,s2)) ; 
           System.out.println("hexadecimal to decimal  first number = "+h.hexatodec(s1)) ; 
           System.out.println("hexadecimal to decimal second number = " +h.hexatodec(s2)) ; 
            
