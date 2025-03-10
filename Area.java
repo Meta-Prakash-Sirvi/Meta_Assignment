@@ -26,7 +26,7 @@ public class Area{
         if(r<=0){
              throw  new ArithmeticException("Radius must be greater then 0") ; 
          }
-         return 2*3.14*r ;
+         return 3.14*r*r;
       }
 
      public static void main(String[] args){
