@@ -47,7 +47,7 @@ public class Result{
                          totalPass++ ; 
                      }
                  }
-                 return (totalPass*100)/n ; 
+                 return (totalPass*100f)/n ; 
         }
 
      public static void main(String[] args) {
@@ -55,12 +55,12 @@ public class Result{
          Result r = new Result() ;
          
          Scanner sc = new Scanner(System.in) ; 
-         System.out.println("Enter the  number of subjects  : "); 
+         System.out.println("Enter the  number of students  : "); 
          int subject = sc.nextInt() ; 
 
          try{
          for(int i=0 ; i<subject ; i++){
-                System.out.print("Enter the marks :") ; 
+                System.out.print("Enter the grades of each student  :") ; 
                 int marks = sc.nextInt() ;
                 r.addmarks(marks);
          }
