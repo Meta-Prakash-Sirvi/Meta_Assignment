@@ -10,8 +10,8 @@ public class Result{
              }
         }
 
-        float avgMarks(){
-                 float sum = 0 ; 
+        float avgMarks(){   //avrage marks 
+                 float sum = 0f ; 
                  int n = marks.size(); 
                 for(int i:marks){
                      sum+=i ; 
@@ -64,16 +64,17 @@ public class Result{
                 int marks = sc.nextInt() ;
                 r.addmarks(marks);
          }
-         }
-         catch(ArithmeticException e){
-             System.out.println("Exception : "+e.getMessage()); 
-         }
-
         System.out.println("Avgrage marks of all Student : " + r.avgMarks());
         System.out.println("Maximum marks is : "+r.maxMarks()) ; 
         System.out.println("Minimum marks is : " + r.minMarks()) ; 
         System.out.println("Total passed student percentage is : "+r.percentage()) ; 
 
+         }
+         catch(ArithmeticException e){
+             System.out.println("Exception : "+e.getMessage()); 
+         }
+
+        
 
      }
 }
