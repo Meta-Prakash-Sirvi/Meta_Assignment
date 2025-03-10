@@ -11,10 +11,11 @@ public class OperationOnString{
                         if(s1.charAt(i)!=s2.charAt(i)){
                              return 0 ; 
                          
-                     
+                        }   
+                }
+            return 1 ;              
                 }
 
-            return 1 ;              
         }
 
         String convert(String s1) {    // lower case to upper case 
