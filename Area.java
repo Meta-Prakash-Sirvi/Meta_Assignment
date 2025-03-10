@@ -15,7 +15,7 @@ public class Area{
            return  (h*w) ;
       }
 
-      public double squreAarea(double w){
+      public double squreArea(double w){
         if(w<=0){
              throw  new ArithmeticException("Width must be greater then 0") ; 
          }
@@ -47,12 +47,13 @@ public class Area{
         System.out.println("Triangle  area : "+ a.triangleArea(height ,width)) ; 
         System.out.println("Rectangle area : " +a.rectangleArea(height, width)) ;
         System.out.println("Square area : " + a.squreArea(width)) ; 
-        System.out.println("Circle are : " + a.circleArea(radius)) ;
+         System.out.println("Circle are : " + a.circleArea(radius)) ;
         }
         catch(ArithmeticException e){
              System.out.println("Error - " +e.getMessage()) ;
         }
 
+        
          
 
 
