@@ -10,8 +10,8 @@ public class Result{
              }
         }
 
-        float avgMarks(){   //avrage marks 
-                 float sum = 0f ; 
+        double avgMarks(){   //avrage marks 
+                 double sum = 0.0f; 
                  int n = marks.size(); 
                 for(int i:marks){
                      sum+=i ; 
@@ -39,7 +39,7 @@ public class Result{
                 return minimum ; 
         }
 
-        float percentage(){
+        double percentage(){
                  int totalPass = 0 ; 
                  int n = marks.size() ;
                  for(int i:marks){
@@ -47,7 +47,7 @@ public class Result{
                          totalPass++ ; 
                      }
                  }
-                 return (totalPass*100f)/n ; 
+                 return (totalPass*100)/n ; 
         }
 
      public static void main(String[] args) {
@@ -64,17 +64,31 @@ public class Result{
                 int marks = sc.nextInt() ;
                 r.addmarks(marks);
          }
-        System.out.println("Avgrage marks of all Student : " + r.avgMarks());
-        System.out.println("Maximum marks is : "+r.maxMarks()) ; 
-        System.out.println("Minimum marks is : " + r.minMarks()) ; 
-        System.out.println("Total passed student percentage is : "+r.percentage()) ; 
+        
+         System.out.println("1 - calculate the Average marks : ");
+         System.out.println("2 - calculate the Maximum marks : ");
+         System.out.println("3 - calculate the Minimum marks : ");
+         System.out.println("4 - calculate the total passed student percentage : ");
+         System.out.println("Enter the choicd : ");
+         int choose = sc.nextInt() ; 
 
+         switch (choose) {
+            case 1:  System.out.println("Avgrage marks of all Student : " + String.format("%.2f", r.avgMarks())); 
+                 break;
+
+            case 2:  System.out.println("Maximum marks is : "+r.maxMarks()) ; 
+                break ;
+
+            case 3:  System.out.println("Minimum marks is : " + r.minMarks()) ; 
+                 break ;
+
+            case 4:   System.out.println("Total passed student percentage is : "+String.format("%.2f" , r.percentage())) ; 
+                 break ;
+         }
          }
          catch(ArithmeticException e){
              System.out.println("Exception : "+e.getMessage()); 
          }
-
-        
 
      }
 }
