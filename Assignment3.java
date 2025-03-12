@@ -7,8 +7,8 @@ import java.util.Scanner;
       int size = input.length ; 
       int count =0 ; 
       int counter = 0 ; 
-      for(int i=1 ; i<size ; i++) {
-         if(input[i-1]==input[i]) {
+      for(int index=1 ; index<size ; index++) {
+         if(input[index-1]==input[index]) {
               counter++ ; 
               if(counter==1){
                    count++ ; 
@@ -25,15 +25,15 @@ import java.util.Scanner;
         int size = input.length ;  
         int total = 0 ; 
        
-       for(int i=0 ; i<size; i++) {  // calculate total sum 
-          total+=input[i] ; 
+       for(int index=0 ; index<size; index++) {  // calculate total sum 
+          total+=input[index] ; 
        }
         int currentSum = 0 ; 
 
-      for(int i=0 ; i<size; i++) {   
-        currentSum+=input[i] ; 
+      for(int index=0 ; index<size; index++) {   
+        currentSum+=input[index] ; 
         if(currentSum==total-currentSum) {  // find equal index 
-            return i+1 ;      //  for - 1 based indexing 
+            return index+1 ;      //  for - 1 based indexing 
         }
       }
     return -1 ;        
@@ -44,17 +44,17 @@ import java.util.Scanner;
         boolean flag  = true ; 
         int countX = 0 ; 
         int countY = 0 ;
-        for(int i=0 ; i<size; i++) {
-            if(input[i]==x) { 
+        for(int index=0 ; index<size; index++) {
+            if(input[index]==x) { 
              countX ++ ; 
             }
-            if(input[i]==y) {
+            if(input[index]==y) {
              countY ++ ;
             }
         }  
 
-        for(int i=1 ;i<size ; i++) {
-         if(input[i-1]==input[i] && input[i]==x) {
+        for(int index=1 ;index<size ; index++) {
+         if(input[index-1]==input[index] && input[index]==x) {
              flag = false ; 
              break ;
          }
@@ -80,10 +80,10 @@ import java.util.Scanner;
         int j = 0;
         int []temparray  = new int[size]; 
     
-        for(int i=0 ; i<size; i++) { 
-         if(input[i]==x && input[i+1]!=y) {
-             temparray[j] = input[i+1] ; 
-             input[i+1] = y ; 
+        for(int index=0 ; index<size; index++) { 
+         if(input[index]==x && input[index+1]!=y) {
+             temparray[j] = input[index+1] ; 
+             input[index+1] = y ; 
              j++;
          }
         }
@@ -109,10 +109,10 @@ import java.util.Scanner;
     public int mirrorlongest(int []input) {
          int size = input.length ; 
         int maxlen = -1 ; 
-        for(int i=0 ; i<size; i++) {
+        for(int index=0 ; index<size; index++) {
             for(int j = size-1 ; j>=0 ; j--) {
                 int len = 0 ; 
-                int start = i  ; 
+                int start = index  ; 
                 int end = j ;
 
                 while(start<size && end>=0 && input[start]==input[end]) {
@@ -157,8 +157,8 @@ public class Assignment3 {
             
             System.out.println("Enter the input elements : ");
             int []input = new int[size] ; 
-            for(int i=0 ; i<size; i++){
-                    input[i] = sc.nextInt() ;
+            for(int index=0 ; index<size; index++){
+                    input[index] = sc.nextInt() ;
             }
 
             switch(choice){
@@ -175,8 +175,8 @@ public class Assignment3 {
                             
                 case 4: 
                     int []result = a.fixXY(input, 4 ,5);
-                     for(int i=0 ; i<size ;i++){
-                         System.out.print(result[i]+" ");
+                     for(int index=0 ; index<size ;index++){
+                         System.out.print(result[index]+" ");
                      } 
                     break ;  
         }
