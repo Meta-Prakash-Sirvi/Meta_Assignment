@@ -25,12 +25,6 @@ public class AssignmentTest {
          int []arr5 = {-1,-1,-1,2,2,-3,-3} ;
          assertEquals(3,s.clumps(arr5)) ;
 
-         int []arr6 = {} ; 
-         assertThrows(AssertionError.class, ()->{
-            if(arr6.length==0){
-                 throw new AssertionError("Array cannot be empty ") ; 
-            }
-         });
     }
 
     @Test 
@@ -67,12 +61,7 @@ public class AssignmentTest {
     int []arr4 = {1, 4, 5, 3, 5, 4, 1} ; 
     assertEquals(7, s.mirrorlongest(arr4));
 
-    int []arr6 = {} ; 
-         assertThrows(AssertionError.class, ()->{
-            if(arr6.length==0){
-                 throw new AssertionError("Array cannot be empty ") ; 
-            }
-         });
+    
 
     }
 
@@ -91,12 +80,30 @@ public class AssignmentTest {
              int []o3 = {1, 4, 5, 1, 1, 4, 5} ; 
              assertArrayEquals(o3, s.fixXY(arr3, 4, 5));
 
-             int []arr4 = {1,4,1,4,5,5,4}; 
-             int n = arr4.length; 
+             int []arr4 = {1,4,1,4,5,5,4};  
+             assertThrows(AssertionError.class,()->{
+                    s.checkExecption(arr4, 4, 5);
+             }) ;
+
+             int []arr5 = {1,4,1,4}; 
              assertThrows(AssertionError.class, ()->{
-                 if(arr4[n-1]==4){
-                     throw new AssertionError("X is not occur at last position") ;
-                 }
-             });
+                 s.checkExecption(arr5, 4, 5);
+             }); 
+
+             int []arr6 = {1,4,4,5,5,3}; 
+             assertThrows(AssertionError.class, ()->{
+                s.checkExecption(arr5, 4, 5);
+            }); 
+
+            int []arr7 = {}; 
+            assertThrows(AssertionError.class, ()->{
+                s.checkExecption(arr5, 4, 5);
+            });
+
+
+                 
+
+            
+            
     }
 }
