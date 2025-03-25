@@ -17,6 +17,7 @@ catgorie_id INT ,
 avalible_stock INT
 ) ; 
 
+-- Write a command to remove Product table of the StoreFront database.
 drop table product ; 
 
 
@@ -77,10 +78,10 @@ isiamge varchar(1),
 FOREIGN KEY(product_id) REFERENCES product(product_id) 
 ); 
 
+-- Write a command to display all the table names present in StoreFront.
+SHOW TABLES ; 
 
 -- Assignemt 2
-
-
 
 INSERT INTO user
 (user_id , name , mobile_no)
@@ -121,8 +122,11 @@ VALUES
 
 INSERT INTO image(image_id , product_id , isiamge)VALUES
 (22 , 11111, 'y'), 
+(33 ,12324 , 'y' ),
 (44 ,12483 ,'n' ),
-(33 ,12324 , 'y' ); 
+(55 , 10325 ,'n'),
+(66 ,12508 ,'y') ;
+
 
 
 SELECT * FROM user ; 
@@ -131,9 +135,17 @@ SELECT * FROM product ;
 SELECT * FROM orders ; 
 
 
+-- Display Id, Title, Category Title, Price of the products which are Active and recently added products should be at top.
+SELECT p.product_id, p.product_dec , c.catgorie_name
+FROM product p
+INNER JOIN catgories c ON p.catgorie_id=c.categorie_id
+WHERE avalible_stock>0 
+ORDER BY product_id DESC;
 
 -- Display Id, Title, Parent Category Title of all the leaf Categories (categories which are not parent of any other category)
-SELECT categorie_id, catgorie_name FROM catgories WHERE praent_id  IN (SELECT DISTINCT praent_id FROM catgories WHERE praent_id IS NOT NULL);
+-- SELECT categorie_id, catgorie_name FROM catgories WHERE praent_id  IN (SELECT DISTINCT praent_id FROM catgories WHERE praent_id IS NOT NULL);
+SELECT categorie_id, catgorie_name FROM catgories WHERE praent_id   IS NOT NULL;
+
 
 -- Display recently added products
 SELECT product_id , product_name, price FROM product ORDER BY product_id DESC ;
@@ -151,7 +163,7 @@ SELECT p.product_id , p.product_name,c.catgorie_name, p.price
 FROM product  p 
 INNER join catgories c ON p.catgorie_id = c.categorie_id
 WHERE product_id 
-IN (SELECT product_id FROM image WHERE isiamge ='y') ; 
+IN (SELECT product_id FROM image WHERE isiamge ='n') ; 
 
 
 
