@@ -53,8 +53,12 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE detail(IN start_date  date , IN end_date date )
 BEGIN
-		IF start_date>end_date THEN
-		SET start_date = DATE_FORMAT(NOW(), "%Y-%m-01");
+		 DECLARE year_part INT;
+         DECLARE month_part INT;
+		IF start_date > end_date THEN
+        SET year_part = year(end_date) ;
+        SET month_part = month(end_date);
+		SET start_date = STR_TO_DATE(CONCAT(year_part,'-',month_part,'-01'), '%Y-%m-%d');
 		END IF;
 	SELECT o.order_id,o.product_id,  o.amount, s.status
     FROM orders o
