@@ -53,13 +53,16 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE detail(IN start_date  date , IN end_date date )
 BEGIN
+		IF start_date>end_date THEN
+		SET start_date = DATE_FORMAT(NOW(), "%Y-%m-01");
+		END IF;
 	SELECT o.order_id,o.product_id,  o.amount, s.status
     FROM orders o
     INNER JOIN shipping s ON
     o.order_id = s.order_id
     WHERE order_date between start_date AND end_date ; 
 END $$
-DELIMITER ; 
+DELIMITER ;
 
 
 
