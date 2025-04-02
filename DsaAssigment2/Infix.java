@@ -1,5 +1,5 @@
-package DsaAssigment2;
 
+package DsaAssigment2;
 import java.util.*;
 
 class Operation {
@@ -8,10 +8,19 @@ class Operation {
 
     int check(String s1) {
         switch (s1) {
-            case "*": return 2; 
-            case "/": return 2;
-            case "+": return 1; 
-            case "-": return 1;
+            case "*": return 12; 
+            case "/": return 12;
+            case "+": return 11; 
+            case "-": return 11;
+            case "==": return 8;
+            case "!=": return 8; 
+            case "<": return 8;
+            case ">": return 8;
+            case ">=": return 8;
+            case "<=": return 8;
+            case "&&": return 4; 
+            case "||": return 3 ; 
+
         }
         
         return 0;
@@ -23,7 +32,16 @@ class Operation {
         for (String token : s2) {
             if (token.matches("-?\\d+")) {
                 operands.push(Integer.parseInt(token));
-            } else { // If token is an operator
+            }
+            else if(token.equals("(")){
+                 operator.push(token) ; 
+            }else if(token.equals(")")){
+                while(!operator.isEmpty() && !operator.peek().equals("(")){
+                     evaluate() ; 
+                }
+                operator.pop() ; 
+                 
+            }else { 
                 while (!operator.isEmpty() && check(operator.peek()) >= check(token)) {
                     evaluate();
                 }
@@ -37,6 +55,8 @@ class Operation {
 
         return operands.pop();
     }
+
+
 
     private void evaluate() {
         if (operands.size() == 1) {
@@ -60,6 +80,38 @@ class Operation {
             case "/":
                 operands.push(firstValue / secondValue);
                 break;
+            case "==": operands.push(firstValue == secondValue ? 1 : 0);
+                break;
+
+            case "<":
+                operands.push(firstValue < secondValue ? 1 : 0);
+                break;
+
+            case ">":
+                operands.push(firstValue > secondValue ? 1:0);
+                break;
+            
+            case "<=":
+                operands.push(firstValue <= secondValue ? 1 : 0);
+                break;
+
+            case ">=":
+                operands.push(firstValue >= secondValue ? 1 : 0);
+                break;
+
+            case "!=":
+                operands.push(firstValue != secondValue ? 1 : 0);
+                break;
+
+            case "&&":
+                operands.push((firstValue!=0 && secondValue!=0) ? 1 : 0);
+                break;
+
+            case "||":
+                operands.push((firstValue!=0 || secondValue!=0) ? 1 : 0);
+                break;
+
+            
         }
     }
 }
