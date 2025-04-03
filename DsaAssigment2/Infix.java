@@ -6,7 +6,7 @@ class Operation {
     private Stack<String> operator = new Stack<>();
     private Stack<Integer> operands = new Stack<>();
 
-    int check(String s1) {
+    int checkPrecedence (String s1) {
         switch (s1) {
             case "*": return 12; 
             case "/": return 12;
@@ -26,7 +26,7 @@ class Operation {
         return 0;
     }
 
-    int solve(String s1) {
+    int operation(String s1) {
         String[] s2 = s1.split("\\s+");
 
         for (String token : s2) {
@@ -42,7 +42,7 @@ class Operation {
                 operator.pop() ; 
                  
             }else { 
-                while (!operator.isEmpty() && check(operator.peek()) >= check(token)) {
+                while (!operator.isEmpty() && checkPrecedence(operator.peek()) >= checkPrecedence(token)) {
                     evaluate();
                 }
                 operator.push(token);
@@ -122,6 +122,6 @@ public class Infix {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the string ");
         String string = sc.nextLine();
-        System.out.println("Result is: " + op.solve(string));
+        System.out.println("Result is: " + op.operation(string));
     }
 }
