@@ -72,7 +72,7 @@ class SimpleQueue implements Queue {
         program.put("EC" , 1 ) ; 
         program.put("IT" , 2) ;
         program.put("ME", 3) ; 
-        program.put("BCA" ,0);;
+        program.put("BCA" ,0);
         program.put("MCA" , 1) ;  
 
         
@@ -141,40 +141,42 @@ public class CollegeProgram {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in) ; 
         ArrayList<Student> studentDetails = new ArrayList<>() ; 
-
+        
         System.out.println("How many  Student Participate  for counseling process : ");
         int numbersOfStudent = sc.nextInt() ; 
-
-         while(numbersOfStudent>0){
+        
+        while(numbersOfStudent>0){
             System.out.println("Enter the name of Student : ");
-             String name  = sc.next() ; 
+            String name  = sc.next() ; 
             System.out.println("Enter the Rank of the Student : ");
             int rank = sc.nextInt() ; 
-              System.out.println("Enter the subject choice of student : (student can fill only 5 choice)");
-              String []subject = new String[5] ; 
-              for(int index=0 ; index<5 ; index++){
-                  subject[index] = sc.next() ; 
-              }
+            System.out.println("Enter the subject choice of student : (student can fill only 5 choice)");
+            System.out.println("Availble course : " + SimpleQueue.program.keySet());
+            String []subject = new String[5] ; 
+            for(int index=0 ; index<5 ; index++){
+                subject[index] = sc.next() ; 
+            }
             
             Student student = new Student(rank,name , subject); 
-
+            
             studentDetails.add(student) ;
-
+            
             numbersOfStudent--; 
-
-
-         }
-
-
+            
+            
+        }
+        
+        
         SimpleQueue queue = new SimpleQueue(studentDetails.size()) ; 
         Collections.sort(studentDetails, Comparator.comparingInt(c -> c.getRank())); 
         for(Student s: studentDetails) {
               queue.add(s) ; 
         }
 
+
     
        queue.display() ;
-       
+
 
        ArrayList<Pair>  allocation = new ArrayList<>();
 
