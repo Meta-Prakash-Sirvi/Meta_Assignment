@@ -55,7 +55,7 @@ class PriorityQueueImplements implements PriorityQueue {
 
     public void delete() {
         if (isEmpty()) {
-            System.out.println("Queue is alredy empty ");
+            System.out.println("Queue is already empty ");
             return;
         }
         if (front + 1 == rear) {
@@ -95,8 +95,8 @@ class PriorityQueueImplements implements PriorityQueue {
         if (isEmpty()) {
             System.out.println("queue is empty ");
         } else {
-            for (int i = front; i < rear; i++) {
-                System.out.print(input[i] + " ");
+            for (int index = front; index < rear; index++) {
+                System.out.print(input[index] + " ");
             }
         }
     }
@@ -104,35 +104,34 @@ class PriorityQueueImplements implements PriorityQueue {
 
 public class ImplementsPriorityQueue {
     public static void main(String[] args) {
-        PriorityQueueImplements pq = new PriorityQueueImplements(5);
+        PriorityQueueImplements priorityQueue = new PriorityQueueImplements(5);
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the choice");
-        
-        
+
         while (true) {
-         System.out.println("1. add element in priority Queue : ");
-        System.out.println("2. Delete  element in priority Queue : ");
-        System.out.println("3. Peek element  element in priority Queue : ");
-        System.out.println("4. IS Empty  priority Queue : ");
-        System.out.println("5. IS Full priority Queue : ");
+            System.out.println("1. add element in priority Queue : ");
+            System.out.println("2. Delete  element in priority Queue : ");
+            System.out.println("3. Peek element  element in priority Queue : ");
+            System.out.println("4. IS Empty  priority Queue : ");
+            System.out.println("5. IS Full priority Queue : ");
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
                     System.out.println("Enter the data you want to insert : ");
                     int data = sc.nextInt();
-                    pq.add(data);
+                    priorityQueue.add(data);
                     break;
 
                 case 2:
-                    pq.delete();
+                    priorityQueue.delete();
                     break;
 
                 case 3:
-                    pq.peekElement();
+                    priorityQueue.peekElement();
                     break;
 
                 case 4:
-                    if (pq.isEmpty()) {
+                    if (priorityQueue.isEmpty()) {
                         System.out.println("queue is empty ");
                     } else {
                         System.out.println("queue is not empty ");
@@ -140,7 +139,7 @@ public class ImplementsPriorityQueue {
                     break;
 
                 case 5:
-                    if (pq.isFull()) {
+                    if (priorityQueue.isFull()) {
                         System.out.println("queue is empty ");
                     } else {
                         System.out.println("queue is not empty ");
@@ -149,14 +148,14 @@ public class ImplementsPriorityQueue {
 
             }
             System.out.println("press -1 to exit ");
-            int press = sc.nextInt(); 
+            int press = sc.nextInt();
 
-            if(press == -1){
-                 break ;
+            if (press == -1) {
+                break;
             }
 
         }
-        
-        pq.display();
+
+        priorityQueue.display();
     }
 }
