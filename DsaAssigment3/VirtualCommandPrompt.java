@@ -5,141 +5,170 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Node{
-     String name; 
-     Node left ;
-     Node right ; 
+class Node {
+    String name;
+    Node left;
+    Node right;
+    Node parent;
 
-     Node(String name){
-         this.name = name ;
-         this.left = null ; 
-         this.right =  null;  
-     }
+    Node(String name) {
+        this.name = name;
+        this.left = null;
+        this.right = null;
+        this.parent = null;
+    }
 }
 
+class CommandPrompt {
 
-class CommandPrompt{
+    public Node mkdir(Node root, String s1) {
+        Node newNode = new Node(s1);
+        newNode.parent = root;
 
-    public Node mkdir(Node root , String s1){
-        Node newnode = new Node(s1); 
-         if(root.left==null){
-             root.left = newnode ; 
-         }else{
-             root.right = newnode ; 
-         }
-
-         return root ; 
-    }
-
-    Node find(Node root , String s1){
-         if(root==null){
-             return null ; 
-         }
-         if(root.name.equals(s1)){
-             return root ; 
-         }
-
-        Node  left = find(root.left, s1) ;
-        if(left!=null){
-             return left ; 
+        if (root.left == null) {
+            root.left = newNode;
+        } else if (root.right == null) {
+            root.right = newNode;
+        } else {
+            System.out.println("This directory already has two subfolders.");
         }
-        return find(root.right, s1) ;
 
-        
+        return root;
     }
 
+    Node find(Node root, String s1) {
+        if (root == null)
+            return null;
 
-    void ls(Node root){
-        if(root==null || root.left==null && root.right==null){
-             System.out.println("No directories found");
-             
-        } else{
-             System.out.println("Folders insides  : " + root.name );
-             if(root.left!=null){
-                 System.out.println(root.left.name);
-             }
-             if(root.right!=null){
-                 System.out.println(root.right.name);
-             }
+        if (root.name.equals(s1))
+            return root;
+
+        Node left = find(root.left, s1);
+        if (left != null)
+            return left;
+
+        return find(root.right, s1);
+    }
+
+    void ls(Node root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            System.out.println("No directories found");
+        } else {
+            System.out.println("Folders inside: " + root.name);
+            if (root.left != null) {
+                System.out.println(root.left.name);
+            }
+            if (root.right != null) {
+                System.out.println(root.right.name);
+            }
         }
     }
 
+    Node cd(Node root, String s1) {
+        Node temp = find(root, s1);
+        if (temp == null) {
+            System.out.println("Error: Directory not found");
+            return root;
+        }
+        return temp;
+    }
 
-    
+    Node bk(Node current) {
+        if (current.parent != null) {
+            return current.parent;
+        } else {
+            System.out.println("Already at root directory");
+            return current;
+        }
+    }
 
+    void tree(Node root, String prefix, boolean isLeft) {
+        if (root != null) {
+            System.out.println(prefix + (isLeft ? "|-- " : "|__ ") + root.name);
+            tree(root.left, prefix + (isLeft ? "| " : " "), true);
+            tree(root.right, prefix + (isLeft ? "| " : " "), false);
+        }
+    }
 
-     Node cd(Node root, String s1){
-          Node temp = find(root, s1); 
-          if(temp==null){
-             System.out.println("Error :  Directory is not found");
-             return root ;
-          }
-        return temp; 
-     }
-
-     void tree(Node root , String pF , boolean flag){
-         if(root!=null){
-             System.out.println(pF + (flag ? "|--" : "|__")+ root.name);
-            tree(root.left, pF + (flag ? "|  ":"  "), true);
-            tree(root.right, pF + (flag ? "|  ":"  "), false);
-             
-         }
-     }
-   
-   
-     
+    String getFullPath(Node current) {
+        StringBuilder path = new StringBuilder();
+        while (current != null) {
+            path.insert(0, "\\" + current.name);
+            current = current.parent;
+        }
+        return "R:" + path + ">";
+    }
 }
 
-public class VirtualCommandPrompt {   
-
+public class VirtualCommandPrompt {
     public static void main(String[] args) {
-        Scanner sc  = new Scanner(System.in) ; 
+        Scanner sc = new Scanner(System.in);
+
+        CommandPrompt commandPrompt = new CommandPrompt();
+        Node rootNode = new Node("root");
+        Node root = rootNode;
+
        
-        VirtualCommandPrompt vc = new VirtualCommandPrompt() ;
-        CommandPrompt c = new CommandPrompt() ;  
-        Node rootNode  = new Node("MetaCude") ; 
-        Node root = rootNode ; 
-          while(true){
-            System.out.println("enter the commands : ");
-             String choose = sc.next() ; 
-             switch (choose) {
-                case "mkdir": System.out.println("Enter the folder name");
-                        String name =  sc.next() ; 
-                        root  = c.mkdir(root, name); 
-                        break ;
-                        
-                case "tree" : c.tree(rootNode , "" , true);
+
+        while (true) {
+            System.out.print(commandPrompt.getFullPath(root));
+            String input = sc.nextLine();
+            String[] parts = input.split(" ");
+            String choose = parts[0];
+
+            switch (choose) {
+                case "mkdir":
+                    if (parts.length < 2) {
+                        System.out.println("The syntax of the command is incorrect : write folder name also :");
+                        break;
+                    }
+                    String name = parts[1];
+                    root = commandPrompt.mkdir(root, name);
                     break;
 
-                case "cd": System.out.println("enter the folder name to move ");
-                    String folder = sc.next() ; 
-                    root = c.cd(root, folder) ; 
-                    break ; 
+                case "tree":
+                    commandPrompt.tree(rootNode, "", true);
+                    break;
 
-                case "find": System.out.println("enter the folder name to find ");
-                    String folderName  = sc.next() ; 
-                    Node temp =  c.find(rootNode, folderName) ; 
-                    if(temp!=null){
-                        System.out.println("Directory found" + temp.name);
-                    }else{
-                         System.out.println("Directory Not found");
+                case "cd":
+                    if (parts.length < 2) {
+                        System.out.println("The syntax of the command is incorrect : write folder name also :");
+                        break;
                     }
-                    break ;
+                    String folder = parts[1];
+                    root = commandPrompt.cd(root, folder);
+                    break;
+
+                case "bk":
+                    root = commandPrompt.bk(root);
+                    break;
+
+                case "find":
+                    if (parts.length < 2) {
+                        System.out.println("The syntax of the command is incorrect : write folder name also :");
+                        break;
+                    }
+                    String folderName = parts[1];
+                    Node temp = commandPrompt.find(rootNode, folderName);
+                    if (temp != null) {
+                        System.out.println("Directory found: " + temp.name);
+                    } else {
+                        System.out.println("Directory not found.");
+                    }
+                    break;
 
                 case "ls":
-                        c.ls(root);
-                        break ; 
+                    commandPrompt.ls(root);
+                    break;
 
-                default : System.out.println("Invalid command : ");
-                break ; 
- 
-             }
+                case "exit":
+                    System.out.println("Exit......");
+                    return;
 
-             if(choose.equals("exit")){
-                 break ; 
-             }
-          }
-
-
+                default:
+                    System.out.println("Invalid command!");
+                    break;
+            }
+        }
     }
 }
