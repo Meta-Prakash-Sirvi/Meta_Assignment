@@ -21,18 +21,22 @@ class Node {
 
 class CommandPrompt {
 
-    public Node mkdir(Node root, String s1) {
-        Node newNode = new Node(s1);
-        newNode.parent = root;
+    public Node mkdir(Node root, String stringInput) {
 
-        if (root.left == null) {
-            root.left = newNode;
-        } else if (root.right == null) {
-            root.right = newNode;
+        if ((root.left != null && root.left.name.equals(stringInput))) {
+            System.out.println(stringInput + "directory already exists ");
         } else {
-            System.out.println("This directory already has two subfolders.");
-        }
+            Node newNode = new Node(stringInput);
+            newNode.parent = root;
 
+            if (root.left == null) {
+                root.left = newNode;
+            } else if (root.right == null) {
+                root.right = newNode;
+            } else {
+                System.out.println("This directory already has two subfolders.");
+            }
+        }
         return root;
     }
 
@@ -107,8 +111,6 @@ public class VirtualCommandPrompt {
         CommandPrompt commandPrompt = new CommandPrompt();
         Node rootNode = new Node("root");
         Node root = rootNode;
-
-       
 
         while (true) {
             System.out.print(commandPrompt.getFullPath(root));
