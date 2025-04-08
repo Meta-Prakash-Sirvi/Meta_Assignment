@@ -1,67 +1,102 @@
-package DSAASSIGNEMT4;
-
+package DSAASSIGNEMT4 ; 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Scanner;
 
-class Employee {
-    int empId;
-    String EmployeeName;
-    String address;
+class Employee{
+    private int empId;
+    private String name;
+    private String address;
 
-    Employee(int empId, String EmployeeName, String address) {
-        this.address = address;
+    Employee(int empId, String name, String address){
         this.empId = empId;
-        this.EmployeeName = EmployeeName;
+        this.name = name;
+        this.address = address;
     }
 
-    String getEmployyeInformation() {
-        return empId + " " + EmployeeName + " " + address;
+    int getId(){
+         return empId ; 
     }
 
+    String getName(){
+         return name ;
+    }
+
+    String getAddress(){
+        return address ;
+   }
+}
+
+class Operation{
+    private ArrayList<Employee> empList;
+    private HashSet<Integer> empIdSet;
+    Operation(){
+        empIdSet = new HashSet<>();
+        empList = new ArrayList<>();
+    }
+
+    void neturalSort(){
+        empList.sort(Comparator.comparingInt(e -> e.getId()));
+    }
+
+    void sortingByName(){
+        empList.sort(Comparator.comparing(e -> e.getName()));
+    }
+
+    boolean CheckEmployee(int id){
+        if(!empIdSet.contains(id)){
+            return true ; 
+        }
+        return false;
+    }
+    
+    void addEmployee(Employee emp){
+         empList.add(emp) ; 
+         empIdSet.add(emp.getId()) ; 
+    }
+
+    void dispaly(){
+        for(Employee emp : empList){
+            System.out.println(emp.getId()+" "+emp.getName()+" "+emp.getAddress());
+        }
+    }
 }
 
 public class EmployeeInfomation {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Map<Integer, Employee> checkEmployee = new HashMap<>();
+        Operation operation = new Operation();
 
-        System.out.println("enter number of employee ");
-        int empnumber = sc.nextInt();
-        while (empnumber > 0) {
-            System.out.println("enter the employee Id ");
-            int empId = sc.nextInt();
-            System.out.println("enter the employee name ");
-            String empName = sc.next();
-           // sc.nextLine();
-            System.out.println("enter the employee Address");
-
-            String empAddress = sc.next();
-
-            if (!checkEmployee.containsKey(empId)) {
-                checkEmployee.put(empId, new Employee(empId, empName, empAddress));
-                empnumber--;
-            } else {
-                System.out.println("Employee with Id -> " + empId + "  already exixts : skip...");
+        Scanner sc = new Scanner(System.in) ; 
+        while(true){
+             System.out.println("enter the employee id ");
+             int empId = sc.nextInt() ; 
+             System.out.println("enter the employee name ");
+             String empName = sc.next() ; 
+             System.out.println("enter the employee address");
+                String empAddress = sc.next() ; 
+                Employee emp = new Employee(empId, empName, empAddress) ; 
+            if(operation.CheckEmployee(emp.getId())){
+                 operation.addEmployee(emp);
+            }else{
+                 System.out.println("duplicate employee id , skipp...");
             }
-        }
 
-        ArrayList<Employee> employeeList = new ArrayList<>(checkEmployee.values());
-        Collections.sort(employeeList, Comparator.comparing(c -> c.empId));
-        System.out.println("Sort according employee Id : ");
-        for (Employee e : employeeList) {
-            System.out.println(e.getEmployyeInformation());
-        }
+            System.out.println("Press -1 exit");
+            int press = sc.nextInt() ; 
+            if(press==-1){
+                 break ; 
+            }
 
-        Collections.sort(employeeList, Comparator.comparing(c -> c.EmployeeName));
-        System.out.println("Sort according employee name :");
-        for (Employee e : employeeList) {
-            System.out.println(e.getEmployyeInformation());
-        }
 
+        }
+        
+        System.out.println("sorting according employee ID ");
+        operation.neturalSort();
+        operation.dispaly();
+
+        System.out.println("sorting accoding employee name ");
+        operation.sortingByName();
+        operation.dispaly();
     }
 }
