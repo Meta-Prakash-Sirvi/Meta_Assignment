@@ -1,8 +1,11 @@
 package DSAASSIGNEMT4;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class StringUnique {
    private Map<String, Integer> cache = new HashMap<>();
@@ -14,22 +17,15 @@ public class StringUnique {
             System.out.println("Retrieve from the Stored Result");
             return value;
         }
+        
+        String[]unique = input.split("") ;  
+        Set<String> set = new HashSet<>(Arrays.asList(unique)) ;
+        
+        cache.put(input, set.size());
+        return set.size() ; 
+          
 
-        Map<Character, Integer> unique = new HashMap<>();
-        int uniqueCount = 0;
-        int size = input.length();
-        for (int index = 0; index < size; index++) {
-            char ch = input.charAt(index);
-            unique.put(ch, unique.getOrDefault(ch, 0) + 1);
-
-        }
-        for (int count : unique.values()) {
-            if (count == 1) {
-                uniqueCount++;
-            }
-        }
-        cache.put(input, uniqueCount);
-        return uniqueCount;
+    
 
     }
 
@@ -44,9 +40,9 @@ public class StringUnique {
             System.out.println("Unique Character in the String : " + stringUnique.findNumberOfUnique(userString));
 
             System.out.print("WANT TO CONTINUE (Y/N): ");
-            String str = sc.next();
+            String string = sc.next();
 
-            if (str.equals("N")) {
+            if (string.equals("N")) {
                 return;
             }
 
