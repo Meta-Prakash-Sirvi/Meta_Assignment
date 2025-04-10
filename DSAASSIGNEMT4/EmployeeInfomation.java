@@ -19,11 +19,11 @@ class Employee {
     }
 
     void neturalSort() {
-        empList.sort(Comparator.comparingInt(e -> e.getId()));
+        empList.sort(Comparator.comparingInt(e -> e.empId));
     }
 
     void sortingByName() {
-        empList.sort(Comparator.comparing(e -> e.getName()));
+        empList.sort(Comparator.comparing(e -> e.name));
     }
 
     boolean CheckEmployee(int id) {
@@ -60,9 +60,7 @@ class Employee {
 
 public class EmployeeInfomation {
     public static void main(String[] args) {
-        // Operation operation = new Operation();
-        Employee emp ;
-        
+        Employee emp;
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("enter the employee id ");
@@ -72,7 +70,6 @@ public class EmployeeInfomation {
             System.out.println("enter the employee address");
             String empAddress = sc.next();
             emp = new Employee(empId, empName, empAddress);
-
             if (emp.CheckEmployee(emp.getId())) {
                 emp.addEmployee(emp);
             } else {
@@ -91,9 +88,9 @@ public class EmployeeInfomation {
         emp.neturalSort();
         emp.dispaly();
 
-        // System.out.println("sorting accoding employee name ");
-        // operation.sortingByName();
-        // operation.dispaly();
+        System.out.println("sorting accoding employee name ");
+        emp.sortingByName();
+        emp.dispaly();
     }
 
 }
