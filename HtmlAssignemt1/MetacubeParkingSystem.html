@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metacube Parking System</title>
+</head>
+
+<body>
+    <header>
+        <h1>Metacube Parking System</h1>
+    </header>
+
+    <nav>
+        <a href="#Employee">Employee</a>
+        <a href="#Vehicle"> Vehicle</a>
+        <a href="#feedback"> Feedback</a>
+        <a href="#Pricing"> Pricing</a>
+    </nav>
+    <br>
+    <img src="images.jpg"
+        width="1200" height="300" />
+
+
+    <section id="Employee">
+        <h3>Employee Details</Details>
+        </h3>
+        <form>
+            <label for= "fullname">Name</label><br>
+            <input type="text" id = "fullname" placeholder="employee name" /><br>
+            <label>Gender</label><br>
+            <input type="radio"  id ="Male"name="Gender" /> Male
+            <input type="radio" name="Gender" /> Female <br>
+            <label for= "Email">Email</label><br>
+            <input type="email" id= "Email" placeholder="email" /><br>
+            <label for="mobile">Mobile</label><br>
+            <input type="tel" id="mobile" placeholder="+91"/><br>
+            <label for="password"> Passward </label><br>
+            <input type="password" id="password" placeholder="password" /><br>
+            <label for="confirm password">Confirm Passward</label><br>
+            <input type="password" id ="confirm password" placeholder="confirm password" />
+
+        </form>
+    </section>
+
+    <section id="Vehicle">
+        <h3>Vehicle</h3>
+        <form>
+            <label for = "id">Employee Id </label><br> 
+            <input type="text" id = "id"placeholder="Employee ID" /> <br>
+            <label for = "Company">Company</label><br>
+            <input type="text" id= "Company"placeholder=" Vehicle Company" /> <br>
+            <label for = "Vehicle number">Vehicle Number</label><br>
+            <input type="text" id="Vehicle number" placeholder="Vehicle number" /><br>
+            <label>Type</label><br>
+            <input type="radio"  name="Vehicle" />Car
+            <input type="radio"  name="Vehicle" /> Bike
+            <input type="radio" name="Vehicle" />Cycle <br>
+            <label for = "model">Model</label><br>
+            <input type="text" id = "model" placeholder="Model" /><br>
+            <label for = "identification">Decribe</label><br>
+            <textarea rows="4" cols="20" id= "identification" placeholder="identification"></textarea>
+
+        </form>
+    </section>
+
+    <section id="feedback">
+        <h3>Feedback</h3>
+        <form>
+            <label for= "name">Name</label><br>
+            <input type="text" id="name" placeholder="Name" />
+            <br>
+            <label for ="email">Email</label><br>
+            <input type="email" id= "email"placeholder="Email" />
+            <br>
+            <label for ="Message">Message</label><br>
+            <textarea rows="4" cols="20" id= "Message" placeholder="Message"></textarea>
+            <br>
+            <input type="button" value="Send Email" />
+        </form>
+    </section>
+
+    <section id="Pricing">
+
+        <h3>Pricing</h3>
+        <table border ="1">
+            <tr>
+                <th>Cycle</th>
+                <th>Bike</th>
+                <th>Car</th>
+            </tr>
+            <tr>
+                <td>$5 Daily</td>
+                <td>$10 Daily</td>
+                <td>$20 Daily</td>
+            </tr>
+            <tr>
+                <td>$100 Monthly</td>
+                <td>$200 Monthly</td>
+                <td>$500 Monthly</td>
+            </tr>
+
+            <tr>
+                <td>$500 Yearly </td>
+                <td>$1000 Yearly</td>
+                <td>$3500 Yearly</td>
+            </tr>
+
+        </table>
+    </section>
+
+</body>
+
+</html>
