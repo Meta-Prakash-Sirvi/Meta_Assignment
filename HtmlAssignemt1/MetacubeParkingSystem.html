@@ -34,18 +34,20 @@
         </h3>
         <form>
             <label for="fullname">Name</label><br>
-            <input type="text" id="fullname" placeholder="employee name" /><br>
+            <input type="text" id="fullname" placeholder="employee name" required /><br>
             <label>Gender</label><br>
-            <input type="radio" id="Male" name="Gender" /> Male
-            <input type="radio" name="Gender" /> Female <br>
+            <input type="radio" id="Male" name="Gender" required /> Male
+            <input type="radio" name="Gender" required /> Female <br>
             <label for="Email">Email</label><br>
-            <input type="email" id="Email" placeholder="email" /><br>
+            <input type="email" id="Email" placeholder="email" required /><br>
             <label for="mobile">Mobile</label><br>
-            <input type="tel" id="mobile" placeholder="+91" /><br>
+            <input type="tel" id="mobile" placeholder="+91" required  pattern="[0-9]{10}" title="please enter valid number"/><br>
             <label for="password"> Passward </label><br>
-            <input type="password" id="password" placeholder="password" /><br>
+            <input type="password" id="password" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/><br>
             <label for="confirm password">Confirm Passward</label><br>
-            <input type="password" id="confirm password" placeholder="confirm password" />
+            <input type="password" id="confirm password" placeholder="confirm password" required /><br>
+            <button>submit</button>
+            
 
         </form>
     </div>
@@ -55,19 +57,21 @@
         <h3>Vehicle</h3>
         <form>
             <label for="id">Employee Id </label><br>
-            <input type="text" id="id" placeholder="Employee ID" /> <br>
+            <input type="text" id="id" placeholder="Employee ID" required /> <br>
             <label for="Company">Company</label><br>
             <input type="text" id="Company" placeholder=" Vehicle Company" /> <br>
             <label for="Vehicle number">Vehicle Number</label><br>
-            <input type="text" id="Vehicle number" placeholder="Vehicle number" /><br>
+            <input type="text" id="Vehicle number" placeholder="Vehicle number" required /><br>
             <label>Type</label><br>
-            <input type="radio" name="Vehicle" />Car
-            <input type="radio" name="Vehicle" /> Bike
-            <input type="radio" name="Vehicle" />Cycle <br>
+            <input type="radio" name="Vehicle" required />Car
+            <input type="radio" name="Vehicle"  required/> Bike
+            <input type="radio" name="Vehicle"  required/>Cycle <br>
             <label for="model">Model</label><br>
             <input type="text" id="model" placeholder="Model" /><br>
             <label for="identification">Decribe</label><br>
-            <textarea rows="4" cols="20" id="identification" placeholder="identification"></textarea>
+            <textarea rows="4" cols="20" id="identification" placeholder="identification" required></textarea><br>
+            <button>submit</button>
+            
 
         </form>
     </div>
@@ -77,15 +81,15 @@
         <h3>Feedback</h3>
         <form>
             <label for="name">Name</label><br>
-            <input type="text" id="name" placeholder="Name" />
+            <input type="text" id="name" placeholder="Name" required/>
             <br>
             <label for="email">Email</label><br>
-            <input type="email" id="email" placeholder="Email" />
+            <input type="email" id="email" placeholder="Email" required/>
             <br>
             <label for="Message">Message</label><br>
             <textarea rows="4" cols="20" id="Message" placeholder="Message"></textarea>
             <br>
-            <input type="button" value="Send Email" />
+            <button>Send Feedback</button>
         </form>
     </div>
 
@@ -153,8 +157,6 @@
             $3500 Yearly</p>
         <button>Purchase Now</button>
     </div>
-
-
 
 
 
