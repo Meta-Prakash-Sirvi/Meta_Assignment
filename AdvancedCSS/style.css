@@ -1,0 +1,296 @@
+* {
+    margin: 0px;
+    padding: 0;
+
+}
+
+
+.container {
+    background-image: url(homebg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.head,
+.foot2 {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+main {
+    background-image: url(bodybg.png);
+    background-position-x: center;
+
+}
+
+
+
+
+.home ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: white;
+
+}
+
+.facebook,
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+
+}
+
+.facebookimg,
+.instaimg,
+.googleimg {
+    cursor: pointer;
+}
+
+.topSection {
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+
+.get {
+
+    display: block;
+}
+
+.get p {
+    color: white;
+    font-size: 50px;
+    font-family: sans-serif;
+    margin-top: 150px;
+}
+
+.button1,
+.button2 {
+    margin-top: 50px;
+    background-color: orangered;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 7px;
+    cursor: pointer;
+
+
+
+}
+
+.button2 {
+    background-color: navy;
+    margin-left: 20px;
+}
+
+
+.phone {
+    padding-left: 50px;
+}
+
+
+.prefect-Features,
+.screen-shorts,
+.Reviews {
+    margin-top: 60px;
+
+    text-align: center;
+    color: rgba(0, 0, 0, 0.55);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.prefect-Features h3,
+.screen-shorts h3,
+.Reviews h3 {
+
+    color: rgb(99, 171, 235);
+    font-family: sans-serif;
+}
+
+
+
+.paragraph {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.paragraph p {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+
+.test {
+    margin: 60px 200px;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+
+.cloud {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cloud-paragaraph {
+    margin-top: 100px;
+    display: block;
+}
+
+.cloud-paragaraph h3 {
+    font-family: sans-serif;
+}
+
+.cloud-paragaraph p {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.cloud-paragaraph img {
+    margin-bottom: 40px;
+
+}
+
+.cloudimage img {
+    width: 250px;
+    height: auto;
+}
+
+.reviews-section1,
+.reviews-section2 {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+    font-family: sans-serif;
+}
+
+.foot {
+    background-image: url(homebg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.foot1 {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+
+
+
+}
+
+.foot1 .image-section {
+    margin-top: 60px;
+
+}
+
+.foot1 .paragraph5 {
+    padding-top: 70px;
+    padding-left: 60px;
+    display: block;
+
+}
+
+.foot1 .paragraph5 h3 {
+    color: white;
+    font-size: 45px;
+    font-family: sans-serif;
+}
+
+.foot1,
+.paragraph5 p {
+    margin-top: 10px;
+    color: white;
+    font-family: sans-serif;
+
+}
+
+.foot1,
+.paragraph5 div {
+
+    margin-top: 30px;
+}
+
+.foot2 {
+    background-color: #34385c;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.test .img2 {
+    position: absolute;
+    width: 500px;
+    height: auto;
+
+
+}
+
+.test .img1,
+.img3 {
+    margin-top: 50px;
+    width: 200px;
+    height: auto;
+
+}
+
+.test .img1 {
+
+    padding-right: 200px;
+}
+
+.home {
+    cursor: pointer;
+}
+
+
+.p1,
+.p2 {
+    position: absolute;
+    z-index: 0;
+}
+
+.p1 p {
+    transform: rotate(90deg);
+    text-align: center;
+    font-size: 180px;
+    top: 0;
+    left: 0;
+    padding-left: 150px;
+    margin-top: 70px;
+    padding-top: 60px;
+    color: rgba(0, 0, 0, 0.192);
+
+
+}
+
+.cloudimage img {
+    position: relative;
+    z-index: 0;
+}
+
+.p2 p {
+    transform: rotate(90deg);
+    text-align: center;
+    font-size: 180px;
+    top: 0;
+    left: 0;
+    padding-left: 150px;
+    margin-top: 70px;
+    padding-top: 40px;
+    color: rgba(0, 0, 0, 0.192);
+
+
+}
