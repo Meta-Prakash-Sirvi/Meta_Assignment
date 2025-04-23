@@ -294,3 +294,17 @@ main {
 
 
 }
+
+.paragraph1,
+.paragraph2,
+.paragraph3 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.paragraphIcon1,
+.paragraphIcon2,
+.paragraphIcon3 {
+    padding-right: 20px;
+    padding-top: 20px;
+}
