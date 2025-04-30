@@ -1,101 +1,107 @@
+const formSteps = document.querySelectorAll(".form-step");
+ formSteps.forEach((step, index) => step.style.display = index === 0 ? "block" : "none");
 
- function employees(nextFieldId) {
-   document.getElementById(nextFieldId).style.display = "block";
-}
+ const vehicleSteps = document.querySelectorAll(".form-vehicle");
+ vehicleSteps.forEach((step, index) => step.style.display = index === 0 ? "block" : "none");
 
-document.getElementById("employeeForm").addEventListener("submit", function (event) {
-   event.preventDefault(); 
-   const passwordInput = document.getElementById("password");
-   
-   const confirmPasswordInput = document.getElementById("confirm password");
-   const mobileInput = document.getElementById("mobile");
-   const fullName = document.getElementById("fullname");
-   const emailInput = document.getElementById("Email");
+ function moveToNext(nextId, currId) {
+ if (currId === "step-1" && !checkValidationName()) return;
+ const curr = document.getElementById(currId);
+ const next = document.getElementById(nextId);
+ if (curr) curr.style.display = "none";
+ if (next) next.style.display = "block";
+ }
 
-   
-   if (passwordInput.value.length < 8) {
-       alert("Password must be at least 8 characters long.");
-       passwordInput.style.borderColor = "red";
-       return;
-   } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(passwordInput.value)) {
-       alert("Password must include uppercase, lowercase, and numeric characters.");
-       passwordInput.style.borderColor = "red";
-       return;
-   }
+ function checkValidationName() {
+ const val = document.getElementById("fname").value.trim();
+ const err = document.getElementById("name-error");
+ const regex = /^([a-zA-Z]+[\s-']?){1,3}$/;
+ if (!val) return err.textContent = "Full name is required.", false;
+ if (!regex.test(val)) return err.textContent = "Invalid full name format.", false;
+ err.textContent = "";
+ return true;
+ }
 
-   if (confirmPasswordInput.value !== passwordInput.value) {
-       alert("confirm password must be same as password. Please try again.");
-       confirmPasswordInput.style.borderColor = "red";
-       return;
-   }
+ function checkEmail() {
+ const val = document.getElementById("Email").value.trim();
+ const err = document.getElementById("email-error");
+ const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ if (!val) return err.textContent = "Email is required.", false;
+ if (!regex.test(val)) return err.textContent = "Invalid email format.", false;
+ err.textContent = "";
+ return true;
+ }
 
+ function checkPassword() {
+ const val = document.getElementById("password").value;
+ const err = document.getElementById("password-error");
+ if (!val) return err.textContent = "Password is required.", false;
+ if (val.length < 6) return err.textContent = "Password must be at least 6 characters.", false;
+ err.textContent = "";
+ return true;
+ }
 
-   //validate mobile name
-   if(mobileInput.value.length <8){
-       alert("mobile number greter then 8 digit"); 
-       mobileInput.style.borderColor = "red"; 
-       return;
-   }else if(!/^\d+$/.test(mobileInput.value)){
-         alert("only digit is allowed ");
-         mobileInput.style.borderColor = "red"; 
-         return ;
-   } 
+ function checkConfirmPassword() {
+ const pwd = document.getElementById("password").value;
+ const conf = document.getElementById("conpassword").value;
+ const err = document.getElementById("conpassword-error");
+ if (!conf) return err.textContent = "Confirm password is required.", false;
+ if (pwd !== conf) return err.textContent = "Passwords do not match.", false;
+ err.textContent = "";
+ return true;
+ }
 
+ function checkContact() {
+ const val = document.getElementById("Contact").value.trim();
+ const err = document.getElementById("contact-error");
+ const regex = /^[0-9]{10}$/;
+ if (!val) return err.textContent = "Contact number is required.", false;
+ if (!regex.test(val)) return err.textContent = "Enter a valid 10-digit number.", false;
+ err.textContent = "";
+ return true;
+ }
 
-   //validate full name
-   if(fullName.value.length < 2){
-      alert("name must be greater the 2 lenght");
-      mobileInput.style.borderColor = "red"; 
-      return ; 
-   }else if(/\d/.test(fullName.value)){
-      alert("numeric value not allowed");
-      mobileInput.style.borderColor = "red"; 
-      return ;
-   }
+ function generateEmployeeId() {
+ return "EMP2025" + Math.floor(1000 + Math.random() * 9000);
+ }
 
+ function handleSubmit() {
+ const empId = generateEmployeeId();
+ document.getElementById("employee-id-display").textContent = "Employee ID: " + empId;
+ document.querySelector(".add_employee_form").style.display = "none";
+ }
 
-   // vaildate email
+ const pricingINR = {
+ Cycle: { Daily: 5, Monthly: 100, Yearly: 500 },
+ Motorcycle: { Daily: 10, Monthly: 200, Yearly: 1000 },
+ "Four Wheeler": { Daily: 20, Monthly: 500, Yearly: 3500 },
+ };
 
-if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) { 
-    alert("Email must be valid and contain '@'");
-    return;
-}
+ const exchangeRates = {
+ INR: 1,
+ USD: 0.012,
+ YEN: 1.82,
+ };
 
+ function calculateAndShowPass() {
+ const vehicle = document.querySelector('input[name="vehicle-type"]:checked')?.value;
+ const plan = document.querySelector('input[name="plan-type"]:checked')?.value;
+ const currency = document.getElementById("currency-select").value;
+ const result = document.getElementById("final-pass");
 
-  
-   alert("Form submitted successfully!");
-   passwordInput.style.borderColor = "green";
-   confirmPasswordInput.style.borderColor = "green";
-  
-});
+ if (!vehicle || !plan) {
+ result.innerText = "Please select vehicle and plan type.";
+ return;
+ }
 
-// Function to display pricing for selected vehicle type
-// Function to display pricing for the selected vehicle type
-function showPricing(vehicleType) {
-    // Hide all pricing sections
-    document.getElementById('car').style.display = 'none';
-    document.querySelector('.pri2').style.display = 'none';
-    document.querySelector('.pri1').style.display = 'none';
+ const inr = pricingINR[vehicle][plan];
+ const converted = (inr * exchangeRates[currency]).toFixed(2);
+ const usd = (inr * exchangeRates["USD"]).toFixed(2);
 
-    // Show the selected pricing section based on vehicle type
-    if (vehicleType === 'Car') {
-        document.getElementById('car').style.display = 'block';
-    } else if (vehicleType === 'Bike') {
-        document.querySelector('.pri2').style.display = 'block';
-    } else if (vehicleType === 'Cycle') {
-        document.querySelector('.pri1').style.display = 'block';
-    }
-}
-
-// Add event listeners to the radio buttons
-document.querySelectorAll('input[name="Vehicle"]').forEach(radio => {
-    radio.addEventListener('click', () => {
-        showPricing(radio.value); // Use the value attribute of the clicked radio button
-    });
-});
-function click(){}
-const price=document.getElementById(currencySelector);
-if(price.value==="USD"){
-    document.getElementById("cycle").innerHTML = "New text!";
-}
-
+ result.innerHTML = `
+ <p>Selected Vehicle: ${vehicle}</p>
+ <p>Plan Type: ${plan}</p>
+ <p>Price in ${currency}: ${converted}</p>
+ <p style="color: green;">Stored Price (USD): $${usd}</p>
+ `;
+ }

@@ -1,217 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metacube Parking System</title>
-    <link rel="stylesheet" href="style.css">
-
-
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Parking System</title>
+ <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
-        <h1>Metacube Parking System</h1>
-    </header>
-    <div class="navigation">
-        <nav>
 
-            <a href="#Employee">Employee</a>
-            <a href="#Vehicle"> Vehicle</a>
-            <a href="#feedback"> Feedback</a>
-            <a href="#Pricing"> Pricing</a>
+ <div class="container">
+ <header class="main-header">
+ <h1>MetaCube Parking System</h1>
+ <nav class="space">
+ <a href="#Employee">Add Employee</a>
+ <a href="#Vehicle">Add Vehicle</a>
+ </nav>
+ </header>
 
+ <!-- SINGLE TOP IMAGE -->
+ <div class="single-image">
+ <img src="images.jpg" alt="Full-width parking image" />
+ </div>
 
-        </nav>
-    </div>
+ <!-- EMPLOYEE SECTION -->
+ <details class="emp-wapper" open>
+ <summary>Employee</summary>
+ <section id="Employee">
+ <h2>Add Employee</h2>
+ <div class="employee-section">
+ <img src="happy-employee-with-his-new-career-free-vector.jpg" alt="Employee Image" height="200" width="300" />
+ <h3 id="employee-id-display" style="color: green;"></h3>
+ <form class="add_employee_form">
+ <div id="step-1" class="form-step">
+ <label>First Name</label>
+ <input type="text" id="fname" oninput="checkValidationName()" />
+ <span id="name-error" style="color: red; font-size: 14px;"></span>
+ <a class="next-btn" onclick="moveToNext('step-2','step-1')">Next</a>
+ </div>
+ <div id="step-2" class="form-step">
+ <label>Gender</label>
+ <input type="radio" name="Gender"> Male
+ <input type="radio" name="Gender"> Female
+ <a class="next-btn" onclick="moveToNext('step-3','step-2')">Next</a>
+ </div>
+ <div id="step-3" class="form-step">
+ <label>Email</label>
+ <input type="text" id="Email" oninput="checkEmail()" />
+ <span id="email-error" style="color: red; font-size: 14px;"></span>
+ <a class="next-btn" onclick="moveToNext('step-4','step-3')">Next</a>
+ </div>
+ <div id="step-4" class="form-step" style="display: none;">
+ <label>Password</label>
+ <input type="password" id="password" oninput="checkPassword()" />
+ <span id="password-error" style="color: red; font-size: 14px;"></span>
+ <a class="next-btn" onclick="moveToNext('step-5','step-4')">Next</a>
+ </div>
+ <div id="step-5" class="form-step" style="display: none;">
+ <label>Confirm Password</label>
+ <input type="password" id="conpassword" oninput="checkConfirmPassword()" />
+ <span id="conpassword-error" style="color: red; font-size: 14px;"></span>
+ <a class="next-btn" onclick="moveToNext('step-6','step-5')">Next</a>
+ </div>
+ <div id="step-6" class="form-step" style="display: none;">
+ <label>Contact</label>
+ <input type="text" id="Contact" oninput="checkContact()" />
+ <span id="contact-error" style="color: red; font-size: 14px;"></span>
+ <button type="button" onclick="handleSubmit()">Submit</button>
+ </div>
+ </form>
+ </div>
+ </section>
+ </details>
 
+ <!-- VEHICLE SECTION -->
+ <details class="emp-wapper">
+ <summary>Vehicle</summary>
+ <section id="Vehicle">
+ <h2>Add Vehicle</h2>
+ <div class="Vehicle-section">
+ <form class="add_vehicle_form">
+ <div id="step-v-1" class="form-vehicle">
+ <label>Vehicle Make</label>
+ <input type="text" id="vehicle-make" />
+ <a class="next-btn" onclick="moveToNext('step-v-2','step-v-1')">Next</a>
+ </div>
+ <div id="step-v-2" class="form-vehicle">
+ <label>Vehicle Model</label>
+ <input type="text" id="vehicle-model" />
+ <a class="next-btn" onclick="moveToNext('step-v-3','step-v-2')">Next</a>
+ </div>
+ <div id="step-v-3" class="form-vehicle">
+ <label>Vehicle Type</label><br>
+ <input type="radio" name="vehicle-type" value="Cycle"> Cycle
+ <input type="radio" name="vehicle-type" value="Motorcycle"> Motorcycle
+ <input type="radio" name="vehicle-type" value="Four Wheeler"> Car
 
-    <div>
-        <img src="images.jpg" />
-    </div>
+ <h3>Plan</h3>
+ <input type="radio" name="plan-type" value="Daily"> Daily
+ <input type="radio" name="plan-type" value="Monthly"> Monthly
+ <input type="radio" name="plan-type" value="Yearly"> Yearly
 
+ <h3>Currency</h3>
+ <select id="currency-select">
+ <option value="INR">INR</option>
+ <option value="USD">USD</option>
+ <option value="YEN">YEN</option>
+ </select>
 
+ <br><br>
+ <a class="next-btn" onclick="calculateAndShowPass()">Get Pass</a>
+ <div id="final-pass" style="margin-top: 20px; font-weight: bold;"></div>
+ </div>
+ </form>
+ <img src="images (1).jpg" alt="Car Image" height="200" width="200">
+ </div>
+ </section>
+ </details>
+ </div>
 
-    <!-- add employee -->
-    <details class="emp-wapper" open>
-        <summary>Employee </summary>
-        <div class="emp-section" id="Employee">
-            <h3>Employee Details</h3>
-
-            <img src="happy-employee-with-his-new-career-free-vector.jpg" />
-            <div class="emp">
-                <h3>Employee Details</h3>
-                <form id="employeeForm">
-                    <div id="namesField">
-                        <label for="fullname">Name</label>
-                        <input type="text" id="fullname" placeholder="Employee Name" required
-                            oninput="employees('genderField')"  />
-                    </div>
-            
-                    <div id="genderField" style="display:none;">
-                        <label>Gender</label>
-                        <input type="radio" id="Male" name="Gender" value="Male" required oninput="employees('emailField')" /> Male
-                        <input type="radio" name="Gender" value="Female" required oninput="employees('emailField')" /> Female
-                    </div>
-            
-                    <div id="emailField" style="display:none;">
-                        <label for="Email">Email</label>
-                        <input type="text" id="Email" placeholder="Email"  oninput="employees('mobileField')" />
-                    </div>
-            
-                    <div id="mobileField" style="display:none;">
-                        <label for="mobile">Mobile</label>
-                        <input type="tel" id="mobile" placeholder="+91" 
-                            title="Please enter a valid 10-digit number" oninput="employees('passwordField')" />
-                    </div>
-            
-                    <div id="passwordField" style="display:none;">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Password" required
-                            oninput="employees('confirmPasswordField')" />
-                    </div>
-            
-                    <div id="confirmPasswordField" style="display:none;">
-                        <label for="confirm password">Confirm Password</label>
-                        <input type="password" id="confirm password" placeholder="Confirm Password" required />
-                    </div>
-            
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </details>
-
-
-
-
-    <!-- vehical information -->
-    <details class="emp-wapper" open>
-        <summary>Vehicle </summary>
-        <div class="vehical-section" id="Vehicle">
-            <h3>Add Vehicle</h3>
-            <img src="images (1).jpg" />
-            <div class="veh">
-                <h3>Vehicle</h3>
-
-                <form>
-                    <div id="employeeNameField">
-                        <label for="id">Employee Id </label>
-                        <input type="text" id="id" placeholder="Employee ID" required  oninput="employees('CompanyField')"/>
-                    </div>
-
-                    <div id="CompanyField">
-                        <label for="Company">Company</label>
-                        <input type="text" id="Company" placeholder=" Vehicle Company" oninput="employees('vehicalField')" />
-                    </div>
-
-                    <div id="vehicalField">
-                        <label for="Vehicle number">Vehicle Number</label>
-                    <input type="text" id="Vehicle number" placeholder="Vehicle number" required oninput="employees('typeField')" />
-                    </div>
-                    
-                    <div id="typeField">
-                        <label>Type</label>
-                        <input type="radio" name="Vehicle" value="Car" required oninput="employees('modelField')" oninput="showPricing('Car')" />Car
-                        <input type="radio" name="Vehicle" value="Bike" required oninput="employees('modelField')" oninput="showPricing('Bike')" />Bike
-                        <input type="radio" name="Vehicle" value="Cycle" required oninput="employees('modelField')" oninput="showPricing('Cycle')" />Cycle
-                    </div>
-
-                    <div id="modelField">
-                    <label for="model">Model</label>
-                    <input type="text" id="model" placeholder="Model" oninput="employees('identificationField')"/>
-                    </div>
-                    
-                    <div id="identificationField">
-                        <label for="identification">Decribe</label>
-                    <textarea rows="4" cols="20" id="identification" placeholder="identification" required></textarea>
-                    </div>
-                   
-                    
-                    <button>submit</button>
-
-
-                </form>
-            </div>
-        </div>
-    </details>
-
-    <!-- feedbaak  -->
-    <div class="feedback-section" id="feedback">
-        <h3>Feedback</h3>
-        <img src="images (2).jpg" />
-
-        <div class="fe">
-            <h3>Get in touch</h3>
-
-            <form>
-
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Name" required />
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" required />
-                <label for="Message">Message</label>
-                <textarea rows="4" cols="20" id="Message" placeholder="Message"></textarea>
-                <button>Send</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Parking Pricing  -->
-    <div class="Pri" id="Pricing">
-
-        <h3>Pricing</h3>
-
-        <div class="pri1" id="cycle">
-            <h3>Cycle</h3>
-            <div>
-                <p>$100 <br>
-                    /month</p>
-            </div>
-            <select name="" id="price">
-                <option value="5">5/Daily</option>
-                <option value="100">100/Monthly</option>
-                <option value="200">200/yearly</option>
-            </select>
-                <select  id="currencySelector">
-                    <option value="USD">USD</option>
-                    <option value="YEN">YEN</option>
-                </select>
-            <button onclick="click()">Purchase Now</button>
-        </div>
-
-
-        <div class="pri2">
-            <h3>Bike</h3>
-            <div>
-                <p>$200 <br>
-                    /month</p>
-            </div>
-
-            <p>$10 Daily <br>
-                $200 Monthly <br>
-                $200 Yearly</p>
-            <button>Purchase Now</button>
-        </div>
-
-
-        <div class="pri3" id="car">
-            <h3>Car </h3>
-            <div>
-                <p>$500 <br>
-                    /month</p>
-            </div>
-
-            <p>$20 Daily <br>
-                $500 Monthly <br>
-                $3500 Yearly</p>
-            <button>Purchase Now</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+ <script src="script.js">
+ </script>
 </body>
-
 </html>
