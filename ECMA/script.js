@@ -11,15 +11,22 @@ const checkValidationName = () => {
 
     if (!val) {
         err.textContent = "Full name is required.";
+        err.style.display = 'inline'; 
         return false;
     }
     if (!regex.test(val)) {
         err.textContent = "Invalid full name format.";
+        err.style.display = 'inline'; 
         return false;
     }
     err.textContent = "";
     return true;
 };
+
+document.getElementById("fname").addEventListener("input", function () {
+    document.getElementById("name-error").style.display = "none";
+});
+
 
 const checkEmail = () => {
     const val = document.getElementById("Email").value.trim();
@@ -28,48 +35,58 @@ const checkEmail = () => {
 
     if (!val) {
         err.textContent = "Email is required.";
+        err.style.display = "inline";
         return false;
     }
     if (!regex.test(val)) {
         err.textContent = "Invalid email format.";
+        err.style.display = "inline";
         return false;
     }
-    err.textContent = "";
+    err.textContent = 'none';
     return true;
 };
+
+document.getElementById("Email").addEventListener("input", function () {
+    document.getElementById("email-error").style.display = "none";
+});
 
 const checkPassword = () => {
     const val = document.getElementById("password").value;
     const err = document.getElementById("password-error");
-    const passwordInput = document.getElementById("password");
 
     if (!val) {
         err.textContent = "Password is required.";
-        passwordInput.style.borderColor = "red";
+        err.style.display = "inline";
         return false;
     }
 
     if (val.length < 8) {
         err.textContent = "Password must be at least 8 characters.";
-        passwordInput.style.borderColor = "red";
+        err.style.display = "inline";
         return false;
     }
 
     const strength = evaluatePasswordStrength(val);
 
     if (strength === "weak") {
-        passwordInput.style.borderColor = "red";
         err.textContent = "Password strength: Weak";
+        err.style.display = "inline";
     } else if (strength === "normal") {
-        passwordInput.style.borderColor = "orange";
         err.textContent = "Password strength: Normal";
+        err.style.display = "inline";
     } else if (strength === "strong") {
-        passwordInput.style.borderColor = "green";
         err.textContent = "Password strength: Strong";
+        err.style.display = "none";
     }
 
     return true;
 };
+
+document.getElementById("password").addEventListener("input", function () {
+    document.getElementById("password-error").style.display = "none";
+});
+
 
 const evaluatePasswordStrength = (password) => {
     let score = 0;
@@ -90,15 +107,23 @@ const checkConfirmPassword = () => {
 
     if (!conf) {
         err.textContent = "Confirm password is required.";
+        err.style.display = "inline";
         return false;
     }
+
     if (pwd !== conf) {
         err.textContent = "Passwords do not match.";
+        err.style.display = "inline";
         return false;
     }
-    err.textContent = "";
+
+    err.style.display = "none";
     return true;
 };
+
+document.getElementById("conpassword").addEventListener("input", function () {
+    document.getElementById("conpassword-error").style.display = "none";
+});
 
 const checkContact = () => {
     const val = document.getElementById("Contact").value.trim();
@@ -116,6 +141,10 @@ const checkContact = () => {
     err.textContent = "";
     return true;
 };
+
+document.getElementById("Contact").addEventListener("input", function () {
+    document.getElementById("contact-error").style.display = "none";
+});
 
 const generateEmployeeId = () => `EMP2025${Math.floor(1000 + Math.random() * 9000)}`;
 
